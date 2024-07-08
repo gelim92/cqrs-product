@@ -5,7 +5,20 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Order } from './entities/order.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Order])],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      password: 'mypassword',
+      username: 'myusername',
+      entities: [Order],
+      database: 'cqrs_order',
+      synchronize: true,
+      logging: true,
+    }),
+    TypeOrmModule.forFeature([Order]),
+  ],
   controllers: [OrderController],
   providers: [OrderService],
 })
