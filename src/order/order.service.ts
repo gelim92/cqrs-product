@@ -13,7 +13,8 @@ export class OrderService {
   ) {}
 
   create(createOrderDto: CreateOrderDto) {
-    return 'This action adds a new order';
+    const newOrder = this.orderRepository.create(createOrderDto);
+    return this.orderRepository.save(newOrder);
   }
 
   findAll() {

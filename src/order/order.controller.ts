@@ -10,14 +10,24 @@ import {
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
+import { ProducerService } from '../email/producer.service';
 
 @Controller('orders')
 export class OrderController {
-  constructor(private readonly orderService: OrderService) {}
+  constructor(
+    private readonly orderService: OrderService,
+    private readonly producerService: ProducerService,
+  ) {}
 
   @Post()
-  create(@Body() createOrderDto: CreateOrderDto) {
-    return this.orderService.create(createOrderDto);
+  async create(@Body() createOrderDto: CreateOrderDto) {
+    const createdOrder = await this.orderService.create(createOrderDto);
+    this.producerService.addToEmailQueue({
+      email: JSON.stringify(createdOrder),
+      subject: 'Order Created',
+      html: 'Your order has been created',
+    });
+    return createdOrder;
   }
 
   @Get()
