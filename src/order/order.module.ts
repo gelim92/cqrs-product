@@ -4,6 +4,7 @@ import { OrderController } from './order.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Order } from './entities/order.entity';
 import { EmailModule } from '../email/email.module';
+import { LineItemEntity } from './entities/lineItem.entity';
 
 @Module({
   imports: [
@@ -13,12 +14,12 @@ import { EmailModule } from '../email/email.module';
       port: 5432,
       password: 'mypassword',
       username: 'myusername',
-      entities: [Order],
+      entities: [Order, LineItemEntity],
       database: 'cqrs_order',
       synchronize: true,
       logging: true,
     }),
-    TypeOrmModule.forFeature([Order]),
+    TypeOrmModule.forFeature([Order, LineItemEntity]),
     EmailModule,
   ],
   controllers: [OrderController],

@@ -1,3 +1,11 @@
+import { OrderStatus } from '../utils/OrderStatus';
+
+export class CreateLineItemDto {
+  productId: number;
+  quantity: number;
+}
+
 export class CreateOrderDto {
-  name: string;
+  status: OrderStatus;
+  lineItems: CreateLineItemDto[];
 }

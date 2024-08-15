@@ -22,11 +22,11 @@ export class OrderController {
   @Post()
   async create(@Body() createOrderDto: CreateOrderDto) {
     const createdOrder = await this.orderService.create(createOrderDto);
-    this.producerService.addToEmailQueue({
-      email: JSON.stringify(createdOrder),
-      subject: 'Order Created',
-      html: 'Your order has been created',
-    });
+    // this.producerService.addToEmailQueue({
+    //   email: JSON.stringify(createdOrder),
+    //   subject: 'Order Created',
+    //   html: 'Your order has been created',
+    // });
     return createdOrder;
   }
 
@@ -40,11 +40,11 @@ export class OrderController {
     return this.orderService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateOrderDto: UpdateOrderDto) {
-    return this.orderService.update(+id, updateOrderDto);
-  }
-
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateOrderDto: UpdateOrderDto) {
+  //   return this.orderService.update(+id, updateOrderDto);
+  // }
+  //
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.orderService.remove(+id);

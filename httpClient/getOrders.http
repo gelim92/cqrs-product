@@ -1,0 +1,31 @@
+
+### GET ALL Orders
+
+GET http://localhost:3000/orders
+
+### GET Order by id
+
+GET http://localhost:3000/orders/4
+
+### POST Orders
+
+POST http://localhost:3000/orders
+Content-Type: application/json
+
+{
+  "status": "PENDING",
+  "lineItems": [
+    {
+      "productId": 11,
+      "quantity": 999
+    },
+    {
+      "productId": 5,
+      "quantity": 444
+    }
+  ]
+}
+
+### DELETE Order
+
+DELETE http://localhost:3000/orders/1

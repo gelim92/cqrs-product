@@ -22,14 +22,18 @@ export class OrderService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} order`;
+    return this.orderRepository.findOneBy({ id });
   }
 
-  update(id: number, updateOrderDto: UpdateOrderDto) {
-    return `This action updates a #${id} order`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} order`;
+  // update(id: number, updateOrderDto: UpdateOrderDto) {
+  //   return `This action updates a #${id} order`;
+  // }
+  //
+  async remove(id: number) {
+    const order = await this.orderRepository.findOneBy({ id });
+    if (!order) {
+      throw new Error('Order not found');
+    }
+    return this.orderRepository.remove(order);
   }
 }
