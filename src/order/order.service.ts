@@ -25,10 +25,10 @@ export class OrderService {
     return this.orderRepository.findOneBy({ id });
   }
 
-  // update(id: number, updateOrderDto: UpdateOrderDto) {
-  //   return `This action updates a #${id} order`;
-  // }
-  //
+  update(id: number, updateOrderDto: UpdateOrderDto) {
+    return this.orderRepository.update(id, updateOrderDto);
+  }
+
   async remove(id: number) {
     const order = await this.orderRepository.findOneBy({ id });
     if (!order) {
