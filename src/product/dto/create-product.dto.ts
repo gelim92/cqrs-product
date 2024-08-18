@@ -5,7 +5,7 @@ export class CreateLineItemDto {
   quantity: number;
 }
 
-export class CreateOrderDto {
+export class CreateProductDto {
   status: OrderStatus;
   lineItems: CreateLineItemDto[];
 }

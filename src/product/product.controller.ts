@@ -8,20 +8,20 @@ import {
   Delete,
   Put,
 } from '@nestjs/common';
-import { OrderService } from './order.service';
-import { CreateOrderDto } from './dto/create-order.dto';
-import { UpdateOrderDto } from './dto/update-order.dto';
+import { ProductService } from './product.service';
+import { CreateProductDto } from './dto/create-product.dto';
+import { UpdateProductDto } from './dto/update-product.dto';
 import { ProducerService } from '../email/producer.service';
 
 @Controller('orders')
-export class OrderController {
+export class ProductController {
   constructor(
-    private readonly orderService: OrderService,
+    private readonly orderService: ProductService,
     private readonly producerService: ProducerService,
   ) {}
 
   @Post()
-  async create(@Body() createOrderDto: CreateOrderDto) {
+  async create(@Body() createOrderDto: CreateProductDto) {
     const createdOrder = await this.orderService.create(createOrderDto);
     // this.producerService.addToEmailQueue({
     //   email: JSON.stringify(createdOrder),
@@ -42,7 +42,7 @@ export class OrderController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateOrderDto: UpdateOrderDto) {
+  update(@Param('id') id: string, @Body() updateOrderDto: UpdateProductDto) {
     return this.orderService.update(+id, updateOrderDto);
   }
 

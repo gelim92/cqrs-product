@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { OrderService } from './order.service';
-import { OrderController } from './order.controller';
+import { ProductService } from './product.service';
+import { ProductController } from './product.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Order } from './entities/order.entity';
+import { Order } from './entities/product.entity';
 import { EmailModule } from '../email/email.module';
 import { LineItemEntity } from './entities/lineItem.entity';
 
@@ -22,7 +22,7 @@ import { LineItemEntity } from './entities/lineItem.entity';
     TypeOrmModule.forFeature([Order, LineItemEntity]),
     EmailModule,
   ],
-  controllers: [OrderController],
-  providers: [OrderService],
+  controllers: [ProductController],
+  providers: [ProductService],
 })
-export class OrderModule {}
+export class ProductModule {}
