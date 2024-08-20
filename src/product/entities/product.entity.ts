@@ -4,27 +4,36 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
 } from 'typeorm';
-import { LineItemEntity } from './lineItem.entity';
 
-@Entity('orders')
-export class Order {
+@Entity('products')
+export class Product {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ type: 'varchar', length: 255 })
-  status: string;
+  name: string;
 
-  @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column({ type: 'varchar', length: 255 })
+  manufacturer: string;
+
+  @Column({ type: 'varchar', length: 255 })
+  country: string;
+
+  @Column({ name: 'unit_price', type: 'varchar', length: 255 })
+  unitPrice: number;
+
+  @CreateDateColumn({
+    name: 'created_on',
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
   createdOn: Date;
 
-  @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  modifiedOn: Date;
-
-  @OneToMany(() => LineItemEntity, (lineItem) => lineItem.order, {
-    eager: true,
-    cascade: true,
+  @UpdateDateColumn({
+    name: 'modified_on',
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP',
   })
-  lineItems: LineItemEntity[];
+  modifiedOn: Date;
 }

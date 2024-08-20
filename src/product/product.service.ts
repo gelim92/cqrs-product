@@ -2,38 +2,38 @@ import { Injectable } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Order } from './entities/product.entity';
+import { Product } from './entities/product.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class ProductService {
   constructor(
-    @InjectRepository(Order)
-    private readonly orderRepository: Repository<Order>,
+    @InjectRepository(Product)
+    private readonly productRepository: Repository<Product>,
   ) {}
 
-  create(createOrderDto: CreateProductDto) {
-    const newOrder = this.orderRepository.create(createOrderDto);
-    return this.orderRepository.save(newOrder);
+  create(createProductDto: CreateProductDto) {
+    const newProduct = this.productRepository.create(createProductDto);
+    return this.productRepository.save(newProduct);
   }
 
   findAll() {
-    return this.orderRepository.find();
+    return this.productRepository.find();
   }
 
   findOne(id: number) {
-    return this.orderRepository.findOneBy({ id });
+    return this.productRepository.findOneBy({ id });
   }
 
-  update(id: number, updateOrderDto: UpdateProductDto) {
-    return this.orderRepository.update(id, updateOrderDto);
+  update(id: number, updateProductDto: UpdateProductDto) {
+    return this.productRepository.update(id, updateProductDto);
   }
 
   async remove(id: number) {
-    const order = await this.orderRepository.findOneBy({ id });
-    if (!order) {
-      throw new Error('Order not found');
+    const product = await this.productRepository.findOneBy({ id });
+    if (!product) {
+      throw new Error('Product not found');
     }
-    return this.orderRepository.remove(order);
+    return this.productRepository.remove(product);
   }
 }

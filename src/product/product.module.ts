@@ -2,9 +2,7 @@ import { Module } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { ProductController } from './product.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Order } from './entities/product.entity';
-import { EmailModule } from '../email/email.module';
-import { LineItemEntity } from './entities/lineItem.entity';
+import { Product } from './entities/product.entity';
 
 @Module({
   imports: [
@@ -14,13 +12,12 @@ import { LineItemEntity } from './entities/lineItem.entity';
       port: 5432,
       password: 'mypassword',
       username: 'myusername',
-      entities: [Order, LineItemEntity],
+      entities: [Product],
       database: 'cqrs_order',
       synchronize: true,
       logging: true,
     }),
-    TypeOrmModule.forFeature([Order, LineItemEntity]),
-    EmailModule,
+    TypeOrmModule.forFeature([Product]),
   ],
   controllers: [ProductController],
   providers: [ProductService],

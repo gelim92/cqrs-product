@@ -1,47 +1,34 @@
 
-### GET ALL Orders
+### GET ALL Products
 
-GET http://localhost:3000/orders
+GET http://localhost:4000/products
 
-### GET Order by id
+### GET Product by id
 
-GET http://localhost:3000/orders/3
+GET http://localhost:4000/products/3
 
-### POST Orders
+### POST Products
 
-POST http://localhost:3000/orders
+POST http://localhost:4000/products
 Content-Type: application/json
 
 {
-  "status": "PENDING",
-  "lineItems": [
-    {
-      "productId": 11,
-      "quantity": 999
-    },
-    {
-      "productId": 5,
-      "quantity": 444
-    }
-  ]
+  "name": "Watch",
+  "manufacturer": "Apple",
+  "country": "USA",
+  "unitPrice": 800
 }
 
-### PUT Order
+### PUT Product
 
-PUT http://localhost:3000/orders/3
+PUT http://localhost:4000/products/1
 Content-Type: application/json
 
 {
-  "status": "PENDING",
-  "lineItems": [
-    {
-      "id": 2,
-      "productId": 11,
-      "quantity": 111
-    }
-  ]
+  "country": "China"
 }
 
-### DELETE Order
 
-DELETE http://localhost:3000/orders/1
+### DELETE Product
+
+DELETE http://localhost:4000/products/2
