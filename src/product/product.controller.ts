@@ -6,6 +6,8 @@ import {
   Param,
   Delete,
   Put,
+  Query,
+  ParseArrayPipe,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -21,8 +23,15 @@ export class ProductController {
   }
 
   @Get()
-  findAll() {
-    return this.productService.findAll();
+  findAll(
+    @Query('ids', new ParseArrayPipe({ items: Number, optional: true }))
+    ids?: number[],
+  ) {
+    if (ids && ids.length > 0) {
+      return this.productService.findMultiple(ids);
+    } else {
+      return this.productService.findAll();
+    }
   }
 
   @Get(':id')

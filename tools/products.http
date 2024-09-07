@@ -3,6 +3,10 @@
 
 GET http://localhost:4000/products
 
+### GET Product by ids
+
+GET http://localhost:4000/products?ids=4&ids=3
+
 ### GET Product by id
 
 GET http://localhost:4000/products/3
@@ -13,10 +17,10 @@ POST http://localhost:4000/products
 Content-Type: application/json
 
 {
-  "name": "Watch",
-  "manufacturer": "Apple",
+  "name": "Beef",
+  "manufacturer": "Costco",
   "country": "USA",
-  "unitPrice": 800
+  "unitPrice": 300
 }
 
 ### PUT Product

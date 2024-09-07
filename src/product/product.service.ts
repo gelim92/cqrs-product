@@ -3,7 +3,7 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './entities/product.entity';
-import { Repository } from 'typeorm';
+import { Repository, In } from 'typeorm';
 
 @Injectable()
 export class ProductService {
@@ -19,6 +19,10 @@ export class ProductService {
 
   findAll() {
     return this.productRepository.find();
+  }
+
+  async findMultiple(ids: number[]): Promise<Product[]> {
+    return this.productRepository.findBy({ id: In(ids) });
   }
 
   findOne(id: number) {
