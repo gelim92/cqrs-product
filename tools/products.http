@@ -18,8 +18,8 @@ Content-Type: application/json
 
 {
   "name": "Beef",
-  "manufacturer": "Costco",
-  "country": "USA",
+  "manufacturer": "NTUC",
+  "country": "SG",
   "unitPrice": 300
 }
 

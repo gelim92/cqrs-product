@@ -9,11 +9,11 @@ import { Product } from './entities/product.entity';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
-      port: 5432,
+      port: 5439,
       password: 'mypassword',
       username: 'myusername',
       entities: [Product],
-      database: 'cqrs_order',
+      database: 'cqrs_product',
       synchronize: true,
       logging: true,
     }),
